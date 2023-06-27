@@ -1,22 +1,19 @@
 package com.example.springmicro.reactive;
-import java.util.Objects;
+
 public class TotalAmount {
     private Item item;
-
     private CartItem cartItem;
-    private double totalAmount;
-    private final double discount = 0.05;
+    private double discount = 0.05;
     private double taxAmount = 1.102;
 
-    public TotalAmount(Item _item){
-        super();
-        this.item = _item;
+    public TotalAmount(Item item, CartItem cartItem) {
+        this.item = item;
+        this.cartItem = cartItem;
     }
 
-    public double totalAmountDue(){
-        totalAmount = item.price * cartItem.getQuantity();
-        totalAmount = totalAmount*discount*taxAmount;
+    public double totalAmountDue() {
+        double totalAmount = item.getPrice() * cartItem.getQuantity();
+        totalAmount *= discount * taxAmount;
         return totalAmount;
     }
-
 }
